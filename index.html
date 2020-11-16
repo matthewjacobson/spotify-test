@@ -15,16 +15,16 @@
 			var client_id = urlParams.get('client_id')
 			var client_secret = urlParams.get('client_secret')
 
-			var access_token = btoa(client_id + ':' + client_secret)
+			// var access_token = btoa(client_id + ':' + client_secret)
 
-			console.log(client_id)
-			console.log(client_secret)
-			console.log(btoa(client_id + ':' + client_secret))
+			// console.log(client_id)
+			// console.log(client_secret)
+			// console.log(btoa(client_id + ':' + client_secret))
 
 			var xhr = new XMLHttpRequest();
 			xhr.open('POST', 'https://accounts.spotify.com/api/token', true);
 			xhr.setRequestHeader('Content-Type', 'text/json');
-			req.setRequestHeader('Authorization','Basic ' + access_token);
+			xhr.setRequestHeader('Authorization','Basic ' + btoa(client_id + ':' + client_secret));
 			xhr.onload = function () {
 				console.log(this.responseText);
 			};
