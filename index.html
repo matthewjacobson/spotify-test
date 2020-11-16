@@ -22,11 +22,12 @@
 			// console.log(btoa(client_id + ':' + client_secret))
 
 			var xhr = new XMLHttpRequest();
-			xhr.open('POST', 'https://accounts.spotify.com/api/token', true, client_id, client_secret);
-			// xhr.setRequestHeader('Authorization','Basic ' + access_token);
+			xhr.setRequestHeader('Content-type', 'application/json');
+			xhr.setRequestHeader('Authorization','Basic ' + access_token);
 			xhr.onload = function () {
 				console.log(this.responseText);
 			};
+			xhr.open('POST', 'https://accounts.spotify.com/api/token', true);
 			xhr.send('grant_type=client_credentials');
 			
 			// var spotifyApi = new SpotifyWebApi();
