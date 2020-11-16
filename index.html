@@ -8,19 +8,29 @@
 
 	<body>
 		<h1>Hello World!</h1>
-		<script src="spotify-web-api.js"></script>
+		<script src='spotify-web-api.js'></script>
 		<script>
 
 			var urlParams = new URLSearchParams(window.location.search);
-			
-			var spotifyApi = new SpotifyWebApi();
-			spotifyApi.setAccessToken(urlParams.get('access_token'));
+			var client_id = urlParams.get('client_id')
+			var client_secret = urlParams.get('client_secret')
 
-			// get Elvis' albums, passing a callback. When a callback is passed, no Promise is returned
-			spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', function (err, data) {
-				if (err) console.error(err);
-				else console.log('Artist albums', data);
-			});
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'https://accounts.spotify.com/api/token', true);
+			xhr.setRequestHeader('Authorization', 'Basic ' + btoa(client_id + ':' + client_secret));
+			xhr.onload = function () {
+				console.log(this.responseText);
+			};
+			xhr.send('grant_type=client_credentials');
+			
+			// var spotifyApi = new SpotifyWebApi();
+			// spotifyApi.setAccessToken(urlParams.get('access_token'));
+
+			// // get Elvis' albums, passing a callback. When a callback is passed, no Promise is returned
+			// spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', function (err, data) {
+			// 	if (err) console.error(err);
+			// 	else console.log('Artist albums', data);
+			// });
 
 		</script>
 	</body>
