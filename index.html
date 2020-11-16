@@ -14,22 +14,26 @@
 			var urlParams = new URLSearchParams(window.location.search);
 			var client_id = urlParams.get('client_id')
 			var client_secret = urlParams.get('client_secret')
-
 			var access_token = btoa(client_id + ':' + client_secret)
 
-			// console.log(client_id)
-			// console.log(client_secret)
-			// console.log(btoa(client_id + ':' + client_secret))
-
-			var xhr = new XMLHttpRequest();
-			xhr.open('POST', 'https://accounts.spotify.com/api/token', true, client_id, client_secret);
-			xhr.withCredentials = true;
+			// var xhr = new XMLHttpRequest();
+			// xhr.open('POST', 'https://accounts.spotify.com/api/token', true);
 			// xhr.setRequestHeader('Content-type', 'application/json');
 			// xhr.setRequestHeader('Authorization','Basic ' + access_token);
-			xhr.onload = function () {
-				console.log(this.responseText);
-			};
-			xhr.send('grant_type=client_credentials');
+			// xhr.onload = function () {
+			// 	console.log(this.responseText);
+			// };
+			// xhr.send('grant_type=client_credentials');
+
+			fetch('https://accounts.spotify.com/api/token', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': 'Basic ' + access_token
+				},
+				body: 'grant_type=client_credentials'
+			})
+				.then(date => console.log(data))
 			
 			// var spotifyApi = new SpotifyWebApi();
 			// spotifyApi.setAccessToken(urlParams.get('access_token'));
