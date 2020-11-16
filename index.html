@@ -22,7 +22,7 @@
 			// console.log(btoa(client_id + ':' + client_secret))
 
 			var xhr = new XMLHttpRequest();
-			xhr.open('POST', 'https://accounts.spotify.com/api/token', true);
+			xhr.open('POST', 'https://accounts.spotify.com/api/token', true, client_id, client_secret);
 			xhr.withCredentials = true;
 			// xhr.setRequestHeader('Content-type', 'application/json');
 			// xhr.setRequestHeader('Authorization','Basic ' + access_token);
