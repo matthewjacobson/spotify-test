@@ -23,8 +23,9 @@
 
 			var xhr = new XMLHttpRequest();
 			xhr.open('POST', 'https://accounts.spotify.com/api/token', true);
-			xhr.setRequestHeader('Content-type', 'application/json');
-			xhr.setRequestHeader('Authorization','Basic ' + access_token);
+			xhr.withCredentials = true;
+			// xhr.setRequestHeader('Content-type', 'application/json');
+			// xhr.setRequestHeader('Authorization','Basic ' + access_token);
 			xhr.onload = function () {
 				console.log(this.responseText);
 			};
